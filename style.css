@@ -1,0 +1,73 @@
+/*
+Theme Name: wpbootstrap
+Theme URI: http://www.cordoba-dev.com
+Author: rachid.ahitass@gmail.com
+Author URI: http://www.cordoba-dev.com
+Description: Third WordPress theme —Photo Gallery Theme —
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: Green, Post formats, LTR Support, Featured image, Translation Ready, Sidebar
+Text Domain: wpbootstrap
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+body{
+  background: #000;
+  color: #fff;
+}
+a{
+  text-decoration: none;
+}
+li{
+  list-style: none;
+}
+input{
+  color: #333;
+}
+img{
+  width:100%;
+}
+.post{
+  padding:20px;
+}
+.pic{
+  text-align: center;
+}
+ul.inline {
+  margin: 0;
+  padding: 0;
+}
+ul.inline li {
+  display: inline-block;
+  margin-right: 5px;
+}
+ul.inline li:last-child {
+  margin-right: 0;
+}
+ul.inline li a {
+border-bottom: 1px solid #009688 !important;
+color: #009688;
+}
+.widget_categories li {
+  transition: 0.7s ease-in-out all;
+}
+.widget_categories li:hover {
+  background: rgba(0, 150, 136, 0.6);
+}
+li.current-cat {
+  background: #009688;
+}
+header input{
+  margin-top:15px;
+}
+footer{
+  text-align: center;
+  margin-top: 40px;
+  border-top: #333 solid 1px;
+}
+.photo-gallery-thumbnail {
+  width: 100%;
+  height: auto;
+}
