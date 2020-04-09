@@ -25,28 +25,39 @@
     <div class="row">
         <nav class="navbar navbar-default">
             <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <?php 
-                    wp_nav_menu( array(
-                    'theme_location'    => 'primary',
-                    'depth'             => 2,
-                    'container'         => 'div',
-                    'container_class'   => 'collapse navbar-collapse',
-                    'container_id'      => 'bs-example-navbar-collapse-1',
-                    'menu_class'        => 'nav navbar-nav',
-                    'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
-                    'walker'            => new WP_Bootstrap_Navwalker(),
-                        ) );
-                ?>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="<?php echo esc_url(home_url()); ?>">
+                    <?php bloginfo('name'); ?>
+                </a>
+            </div>
+            <?php
+            wp_nav_menu( array(
+                'theme_location'    => 'primary',
+                'depth'             => 2,
+                'container'         => 'div',
+                'container_class'   => 'collapse navbar-collapse',
+                'container_id'      => 'bs-example-navbar-collapse-1',
+                'menu_class'        => 'nav navbar-nav',
+                'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
+                'walker'            => new WP_Bootstrap_Navwalker())
+            );
+            ?>
                 <!-- /.navbar-collapse -->
-                <form class="navbar-form navbar-left">
+                <form method="get" action="<?php echo esc_url(home_url('/')) ?>" role="search" class="navbar-form navbar-left">
                     <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
+                        <label for="navbar-search" class="sr-only"><?php _e('Search', 'textdomain'); ?></label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="s" id="navbar-search" placeholder="search...">
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="submit" class="btn btn-default"><?php _e('Search', 'textdomain'); ?></button>
                 </form>
             </div><!-- /.container-fluid -->
         </nav>
