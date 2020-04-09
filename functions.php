@@ -31,6 +31,9 @@ if ( ! function_exists( 'wpbootstrap_setup' ) ) :
 			// file exists... require it.
 			require_once get_template_directory() . '/inc/class-wp-bootstrap-navwalker.php';
 		}
+		require_once get_template_directory() . '/widgets/class-wp-widget-categories.php';
+		require_once get_template_directory() . '/widgets/class-wp-widget-recent-comments.php';
+		require_once get_template_directory() . '/widgets/class-wp-widget-recent-posts.php';
 		/**
 		 * Enable support for post thumbnails and featured images.
 		 */
@@ -45,7 +48,7 @@ if ( ! function_exists( 'wpbootstrap_setup' ) ) :
 		add_theme_support( 'title-tag' );
  
 		// Add theme support for Translation
-		load_theme_textdomain( 'text_domain', get_template_directory() . '/language' );
+		load_theme_textdomain( 'text_domain', get_template_directory_uri() . '/language' );
 
 		/**
 		 * Add support for two custom navigation menus.
@@ -67,24 +70,37 @@ if ( ! function_exists( 'wpbootstrap_setup' ) ) :
 		 * Enqueue scripts and styles.
 		 **/
 		function wpbootstrap_scripts() {
-			wp_enqueue_style('bootstrapmin', '//stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css','','3.2.1', 'all');
-			wp_enqueue_script('bootstrapjsmin', '//stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js',array('jquery'), '3.2.1', true);
+			wp_enqueue_style('bootstrapmin', '//stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css','','3.4.1', 'all');
+			wp_enqueue_style('fontawesome', '//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css','','4.7.0', 'all');
+			wp_enqueue_script('bootstrapjsmin', '//stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js',array('jquery'), '3.4.1', true);
+			wp_enqueue_script('wpbscript', get_template_directory_uri() . '/js/script.js','', '1.0', true);
 		}
+		//echo get_template_directory();
 		add_action( 'wp_enqueue_scripts', 'wpbootstrap_scripts' );
 		function init_widgets($id) {
 			register_sidebar( array(
 				'name'          => __( 'Sidebar', 'wpbootstrap' ),
 				'id'            => 'sidebar',
 				'description'   => __( 'Add widgets here to appear in your sidebar on blog posts and archive pages.', 'wpbootstrap' ),
-				'before_widget' => '<div id="%1$s" class="w3-col m3 l3 widget side-widget %2$s">',
+				'before_widget' => '<div class="panel panel-default">',
+				'before_title'	=> '<div class="panel-heading"><h3>',
+				'after_title'	=> '</h3></div>',
 				'after_widget'  => '</div>'
 			));
 		}
-		/*function wpbootstrap_init_widget() {
-			register_widget('wpbootstrap_Widget_Categories');
-		}*/
+		// Adds 'list-group-item' to categories li
+		function add_new_class_list_categories($list){
+			$list = str_replace('cat-item', 'cat-item list-group-item', $list);
+			return $list;
+		}
+		add_filter('wp_list_categories', 'add_new_class_list_categories');
+		function wpbootstrap_init_widget() {
+			register_widget('Wpbootstrap_Widget_Categories');
+			register_widget('Wpbootstrap_Widget_Recent_posts');
+			register_widget('Wpbootstrap_Widget_Recent_Comments');
+		}
 		add_action('widgets_init','init_widgets');
-		//add_action('widgets_init', 'wpbootstrap_init_widget');
+		add_action('widgets_init', 'wpbootstrap_init_widget');
 	}
 endif;
 	add_action('after_setup_theme','wpbootstrap_setup');
