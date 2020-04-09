@@ -8,8 +8,8 @@
  * @subpackage wpbootstrap
  * @since 1.0.0
  */
-@ini_set( 'upload_max_size' , '120M' );
-@ini_set( 'post_max_size', '120M');
+@ini_set( 'upload_max_filesize' , '120M' );
+@ini_set( 'post_max_size', '12M');
 @ini_set( 'max_execution_time', '300' );
 
 /**
