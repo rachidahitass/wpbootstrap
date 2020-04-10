@@ -2,6 +2,7 @@
 <div class="container index">
     <div class="row">
         <div class="col-md-9">
+            <main class="main-content">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Blog Posts</h3>
@@ -34,14 +35,16 @@
                         </article>
                     </div>
                 </div><!-- End Panel Body -->
-                <?php $i++ ?>
                 <?php endwhile; ?>
                 <?php endif; ?>
             </div><!-- End Panel -->
+            </main><!-- Main content Area -->
         </div><!-- End Content Area -->
         <?php if( is_active_sidebar('sidebar') ): ?>
         <div class="col-md-3">
-            <?php dynamic_sidebar('sidebar'); ?>
+            <aside class="sidebar">
+                <?php dynamic_sidebar('sidebar'); ?>
+            </aside><!-- end sideBar -->
         </div><!-- End Sidebar -->
         <?php endif; ?>
     </div><!-- End Top Row -->
