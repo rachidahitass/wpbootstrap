@@ -17,7 +17,7 @@
                             <?php if( has_post_thumbnail() ): ?>
                                 <div class="col-md">
                                     <?php $attr = array(
-                                        'class' => 'img-responsive' 
+                                        'class' => 'img-responsive img-thumbnail' 
                                     ) ?>
                                     <?php the_post_thumbnail('', $attr); ?>
                                 </div>
